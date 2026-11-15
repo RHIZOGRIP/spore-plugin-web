@@ -1,0 +1,94 @@
+@layer tokens, base, parts;
+
+@layer tokens {
+  :root {
+    color-scheme: light dark;
+
+    --bg: light-dark(oklch(99.2% 0.002 255), oklch(17.5% 0.008 255));
+    --surface: light-dark(oklch(96.4% 0.004 255), oklch(22% 0.01 255));
+    --raised: light-dark(oklch(100% 0 0), oklch(24.5% 0.012 255));
+    --text: light-dark(oklch(21% 0.012 255), oklch(93% 0.006 255));
+    --text-muted: light-dark(oklch(46% 0.014 255), oklch(72% 0.012 255));
+    --accent: light-dark(oklch(50% 0.15 255), oklch(74% 0.12 255));
+    --on-accent: light-dark(oklch(99% 0.003 255), oklch(18% 0.02 255));
+    --danger: light-dark(oklch(50% 0.19 25), oklch(72% 0.16 25));
+
+    --hairline: color-mix(in oklab, var(--text) 9%, transparent);
+    --border: color-mix(in oklab, var(--text) 16%, transparent);
+    --border-strong: color-mix(in oklab, var(--text) 28%, transparent);
+    --hover: color-mix(in oklab, var(--text) 5%, transparent);
+    --selected: color-mix(in oklab, var(--text) 9%, transparent);
+    --scrim: light-dark(oklch(21% 0.012 255 / 0.28), oklch(0% 0 0 / 0.55));
+
+    --shade-1: light-dark(oklch(30% 0.03 255 / 0.05), oklch(0% 0 0 / 0.3));
+    --shade-2: light-dark(oklch(30% 0.03 255 / 0.08), oklch(0% 0 0 / 0.4));
+    --shadow-low: 0 0 0 1px var(--hairline), 0 1px 2px -1px var(--shade-2), 0 2px 4px var(--shade-1);
+    --shadow-mid: 0 0 0 1px var(--hairline), 0 2px 4px var(--shade-1), 0 6px 12px var(--shade-1), 0 12px 24px var(--shade-1);
+    --shadow-high: 0 0 0 1px var(--hairline), 0 2px 4px var(--shade-1), 0 8px 16px var(--shade-2), 0 24px 48px var(--shade-2);
+
+    --radius: 6px;
+    --radius-small: calc(var(--radius) - 2px);
+    --radius-large: calc(var(--radius) + 4px);
+
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --size-prose: 16px;
+    --size-ui: 14px;
+    --size-meta: 12.5px;
+    --lead-prose: 1.6;
+    --lead-ui: 1.4;
+
+    --s1: 4px;
+    --s2: 8px;
+    --s3: 12px;
+    --s4: 16px;
+    --s5: 24px;
+    --s6: 32px;
+    --s7: 48px;
+
+    --column: 44rem;
+
+    --quick: 120ms;
+    --calm: 180ms;
+    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  :root[data-theme="light"] { color-scheme: light; }
+  :root[data-theme="dark"] { color-scheme: dark; }
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: var(--size-ui)/var(--lead-ui) var(--font);
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+  }
+
+  button, input, textarea, select { font: inherit; color: inherit; }
+
+  button { cursor: pointer; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  ::selection { background: color-mix(in oklab, var(--accent) 24%, transparent); }
+
+  * { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+
+  .sprite { display: none; }
+
+  .glyph {
+    width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "name": "@rhizogrip/spore-plugin-web",
+  "version": "0.2.2",
+  "description": "A web page for spores: each person talks with their spores in a browser, on this machine or behind the operator's proxy, run as a service",
+  "author": "Christophe Le Bars",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RHIZOGRIP/spore.git",
+    "directory": "plugins/web"
+  },
+  "homepage": "https://rhizogrip.com/plugins",
+  "engines": {
+    "node": ">=24"
+  },
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "files": [
+    "bin/",
+    "src/",
+    "page/",
+    "README.md",
+    "LICENSING.md",
+    "NOTICE"
+  ],
+  "dependencies": {
+    "dompurify": "^3.2.6",
+    "marked": "^18.0.11"
+  },
+  "peerDependencies": {
+    "@rhizogrip/spore": "^1.62.0"
+  },
+  "devDependencies": {
+    "@rhizogrip/spore": "file:../spore/packages/spore",
+    "release-it": "^21.0.3",
+    "vitest": "^4.1.11"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "prerelease": "npm test",
+    "release": "release-it"
+  },
+  "spore": {
+    "works": "^1.62.0",
+    "services": {
+      "web": {
+        "what": "a web page of yours, each person it maps talking with their spores in a browser",
+        "program": "./bin/spore-web.js",
+        "instances": {
+          "called": "page"
+        },
+        "check": [
+          "--check"
+        ]
+      }
+    }
+  },
+  "release-it": {
+    "git": {
+      "requireBranch": "main",
+      "commitMessage": "release: v${version}",
+      "tagName": "v${version}",
+      "requireUpstream": false,
+      "push": true
+    },
+    "npm": {
+      "publish": false
+    },
+    "github": {
+      "release": false
+    }
+  },
+  "license": "AGPL-3.0-only"
+}

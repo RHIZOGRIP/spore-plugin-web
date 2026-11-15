@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="color-scheme" content="light dark">
+<title>spore</title>
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<script src="/mode.js"></script>
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/theme.css">
+<script type="module" src="/app.js"></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Spores">
+    <header class="sidebar-head">
+      <span class="label">Spores</span>
+      <kbd class="hint">Ctrl K</kbd>
+    </header>
+    <nav aria-label="Spores"><ul class="spores" id="spores"></ul></nav>
+    <footer class="sidebar-foot">
+      <span class="who" id="who"></span>
+      <details class="shell" id="shell" hidden>
+        <summary id="shell-name"></summary>
+        <ul id="shell-links"></ul>
+      </details>
+      <button type="button" class="icon" id="mode" aria-label="Colour scheme: system"><svg class="glyph" aria-hidden="true"><use href="#i-theme"/></svg></button>
+    </footer>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+  <main class="main">
+    <header class="top">
+      <button type="button" class="icon menu" id="menu" aria-label="Spores" aria-controls="sidebar" aria-expanded="false"><svg class="glyph" aria-hidden="true"><use href="#i-menu"/></svg></button>
+      <h1 class="title" id="title"></h1>
+    </header>
+    <section class="thread" id="thread" role="log" aria-live="off" aria-label="Conversation" tabindex="0">
+      <div class="column" id="column"></div>
+    </section>
+    <button type="button" class="latest" id="latest" hidden>Jump to latest</button>
+    <form class="composer" id="composer">
+      <ul class="commands" id="commands" role="listbox" aria-label="Commands" hidden></ul>
+      <ul class="chips" id="attached" aria-label="Attached files"></ul>
+      <div class="box" id="box">
+        <button type="button" class="icon" id="attach" aria-label="Attach files"><svg class="glyph" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <input type="file" id="picker" multiple hidden>
+        <textarea id="input" rows="1" placeholder="Message" aria-label="Message" autocomplete="off"></textarea>
+        <button type="submit" class="send" id="send" aria-label="Send" title="Send"><svg class="glyph" aria-hidden="true"><use href="#i-send"/></svg></button>
+      </div>
+      <p class="refusal" id="refusal" role="alert" hidden></p>
+      <p class="connection" id="connection" role="alert" hidden></p>
+    </form>
+  </main>
+</div>
+<div class="switcher" id="switcher" role="dialog" aria-modal="true" aria-label="Open a spore" hidden>
+  <div class="switcher-box">
+    <input type="text" id="filter" aria-label="Spore" placeholder="Open a spore…" autocomplete="off">
+    <ul id="matches" role="listbox" aria-label="Spores"></ul>
+  </div>
+</div>
+<div class="sr-only" id="status" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
